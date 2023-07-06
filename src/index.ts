@@ -1,4 +1,4 @@
-import { Fragment, defineComponent, h, ref, watch } from 'vue'
+import { Fragment, defineComponent, h, ref, toRef, watch } from 'vue'
 import type { Ref, VNode } from 'vue'
 
 import type { PluggableList } from 'unified'
@@ -54,7 +54,7 @@ export function useRemark(source: Ref<string>, {
     .use(rehypeVue, rehypeVueOptions)
 
   const error = ref<Error | null>(null)
-  const content = ref<VNode | null>(null)
+  const content = ref<VNode>(h(Fragment))
 
   watch(source, async () => {
     if (error.value)
@@ -80,8 +80,9 @@ export interface RemarkProps extends UseRemarkOptions {
 }
 
 export const Remark = defineComponent<RemarkProps>({
-  setup({ source, ...rest }, { slots }) {
-    const { content, error } = useRemark(source, rest)
+  setup(props, { slots }) {
+    const { content, error } = useRemark(toRef(props, 'source'), props)
+
     return () => {
       if (error.value) {
         return h(Fragment,
