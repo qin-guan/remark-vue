@@ -7,7 +7,6 @@ on:
 
 jobs:
   release:
-    environment: Production
     permissions:
       id-token: write
       contents: write
