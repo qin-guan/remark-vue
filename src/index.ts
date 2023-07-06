@@ -80,8 +80,8 @@ export interface RemarkProps extends UseRemarkOptions {
 }
 
 export const Remark = defineComponent<RemarkProps>({
-  setup({ source }, { slots }) {
-    const { content, error } = useRemark(source)
+  setup({ source, ...rest }, { slots }) {
+    const { content, error } = useRemark(source, rest)
     return () => {
       if (error.value) {
         return h(Fragment,
