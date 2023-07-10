@@ -36,13 +36,13 @@
     "lint:fix": "eslint --cache --fix ."
   },
   "peerDependencies": {
+    "remark-parse": "^10.0.2",
+    "remark-rehype": "^10.1.0",
     "vue": "^3.3.4"
   },
   "dependencies": {
     "mdast-util-to-hast": "^12.3.0",
-    "rehype-vue": "^1.0.2",
-    "remark-parse": "^10.0.2",
-    "remark-rehype": "^10.1.0"
+    "rehype-vue": "^1.0.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.7",
