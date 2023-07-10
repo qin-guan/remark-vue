@@ -1,7 +1,7 @@
 {
   "name": "@qingu/remark-vue",
   "type": "module",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Convert markdown to Vue",
   "author": "Qin Guan",
   "license": "MIT",
