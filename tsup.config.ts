@@ -10,7 +10,5 @@ export default defineConfig({
   sourcemap: true,
   external: [
     'vue',
-    'remark-parse',
-    'remark-rehype',
   ],
 })
