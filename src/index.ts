@@ -5,6 +5,7 @@ import type { PluggableList } from 'unified'
 import { unified } from 'unified'
 
 import remarkParse, { type Options as RemarkParseOptions } from 'remark-parse'
+import remarkGfm, { type Options as RemarkGfmOptions } from 'remark-gfm'
 import remarkToRehype from 'remark-rehype'
 
 import type { Options as RemarkRehypeOptions } from 'mdast-util-to-hast'
@@ -13,6 +14,7 @@ import { createIsomorphicDestructurable } from './utils'
 
 export interface ParseSyncOptions {
   remarkParseOptions?: RemarkParseOptions
+  remarkGfmOptions?: RemarkGfmOptions
   remarkToRehypeOptions?: RemarkRehypeOptions
   rehypeVueOptions?: RehypeVueOptions
   remarkPlugins?: PluggableList
@@ -22,6 +24,7 @@ export interface ParseSyncOptions {
 export function parseSync(source: string,
   {
     remarkParseOptions,
+    remarkGfmOptions,
     remarkToRehypeOptions,
     rehypeVueOptions,
     remarkPlugins = [],
@@ -29,6 +32,7 @@ export function parseSync(source: string,
   }: ParseSyncOptions = {}) {
   return unified()
     .use(remarkParse, remarkParseOptions)
+    .use(remarkGfm, remarkGfmOptions)
     .use(remarkPlugins)
     .use(remarkToRehype, remarkToRehypeOptions)
     .use(rehypePlugins)
@@ -41,6 +45,7 @@ export interface UseRemarkOptions extends ParseSyncOptions {
 
 export function useRemark(source: Ref<string>, {
   remarkParseOptions,
+  remarkGfmOptions,
   remarkToRehypeOptions,
   rehypeVueOptions,
   remarkPlugins = [],
@@ -48,6 +53,7 @@ export function useRemark(source: Ref<string>, {
 }: UseRemarkOptions = {}) {
   const parser = unified()
     .use(remarkParse, remarkParseOptions)
+    .use(remarkGfm, remarkGfmOptions)
     .use(remarkPlugins)
     .use(remarkToRehype, remarkToRehypeOptions)
     .use(rehypePlugins)
